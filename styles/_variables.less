@@ -1,0 +1,90 @@
+
+@font-face {
+  font-family: "Lato";
+  src: url(../fonts/Lato-Regular.ttf);
+}
+
+@font-face {
+  font-family: "BebasNeueBold";
+  src: url(../fonts/BebasNeueBold.otf);
+}
+
+
+
+@textFont: "Lato", sans-serif;
+@textColor: #6a6a6a;
+
+
+@headerColor: #6c6c6c;
+@headerHoverColor: #262626;
+@headerMediumColor: #474747;
+
+@buttonFont: "BebasNeueBold", sans-serif;
+
+@iconsColor: #191919;
+
+@lightColor: #fff;
+
+@standartPadding: 20px;
+@standartGap: 20px;
+
+.respondTo(@device, @content) {
+  & when (@device = phones) {
+    @media all and (max-width: 479px) { @content(); }
+  }
+  & when (@device = wide-phones) {
+    @media all and (min-width: 480px) and (max-width: 767px) { @content(); }
+  }
+  & when (@device = tablets) {
+    @media all and (min-width: 768px) and (max-width: 991px) { @content(); }
+  }
+  & when (@device = small-desktops) {
+    @media all and (min-width: 992px) and (max-width: 1199px) { @content(); }
+  }
+  & when (@device = lg-desktops) {
+    @media all and (min-width: 1200px) and (max-width: 1440px) { @content(); }
+  }
+  & when (@device = xlg-desktops) {
+    @media all and (min-width: 1441px) and (max-width: 1920px) { @content(); }
+  }
+}
+
+.customRespond(@minWidth, @maxWidth, @content) {
+  @media all and (min-width: @minWidth) and (max-width: @maxWidth) { @content(); }
+}
+
+.insideWrapMixin {
+  width: 1200px;
+  margin: 0 auto;
+
+  .customRespond(0, (1200px + @standartPadding*2) - 1, {
+    width: 100%;
+    margin: 0 0;
+  });
+}
+
+.buttonMixin {
+    border: none;
+    outline: none;
+    border-radius: 7px;
+    background-color: #ffc61a;
+    width: 166px;
+    height: 50px;
+    font-family: @buttonFont;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-size: 29.52px;
+    /* Приближение из-за подстановки шрифтов */
+    font-weight: 400;
+    text-align: center;
+    transform: scaleX(1.0001);
+
+  &:hover {
+//    background-color: #37c3a8;
+    cursor: pointer;
+    transition-duration: .5s;
+    transform: scale(1.1, 1.1);
+  }
+}
+
+
